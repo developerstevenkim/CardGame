@@ -7,11 +7,12 @@ let divFrame = document.getElementById("divFrame");
 let firstPage = document.getElementById("firstPage");
 let clickRightCard = document.getElementById("clickRightCard");
 let i;
+let points = 0;
 let arrayButtons = [];
 
 goBtn.onclick = createObj;
 
-function Button(color, width, height, top, left, order) {
+function Button(color, width, height, order) {
     this.order = order;
     this.btn = document.createElement("button");
     this.btn.style.backgroundColor = color;
@@ -23,28 +24,17 @@ function Button(color, width, height, top, left, order) {
 
 function createObj() {
     for (i = 0; i < parseInt(textInput.value); i++) {
-        arrayButtons.push(new Button("Red", "120px", "60px", "0px", "0px", i));
+        arrayButtons.push(new Button("Red", "60px", "60px", i));
         randomColor = Math.floor(Math.random() * 16777215).toString(16);
         arrayButtons[i].btn.style.backgroundColor = "#" + randomColor;
-        arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
-        arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 120)) + "px";
-        arrayButtons[i].btn.style.zIndex = "-1";
+        if (i != 0) {
+            arrayButtons[i].btn.style.display = "none";
+        } 
     }
 
-    function recreateObj() {
-        setTimeout(function () {
-            for (i = 0; i < parseInt(textInput.value); i++) {
-                arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
-                arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 120)) + "px";
-            }
-            REDUCEDTIME = REDUCEDTIME - 200; // change later to set maybe 30?
-            if (REDUCEDTIME < 100) {
-                alert("Congrats!"); // change this as well
-                window.onload();
-            }
-            recreateObj();
-        }, REDUCEDTIME);
-    }
+    arrayButtons[0].btn.style.top = (window.innerHeight - 60) / 2 + "px";
+    arrayButtons[0].btn.style.left = (window.innerWidth - 60) / 2 + "px";
+
 
     recreateObj();
 
@@ -52,4 +42,34 @@ function createObj() {
     para = document.createElement("p");
     para.innerHTML = "You've created " + i + " button(s).";
     divFrame.appendChild(para);
+}
+
+function recreateObj() {
+    setTimeout(function () {
+        for (i = 0; i < parseInt(textInput.value); i++) {
+            arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
+            arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 60)) + "px";
+            arrayButtons[i].btn.style.display = "block";
+        }
+        arrayButtons[0].btn.onclick = function() {
+            getPoints();
+        }
+        
+        // clickRightCard.play(); audio sound
+        REDUCEDTIME = REDUCEDTIME - 20; // change later to set maybe 30?
+        if (REDUCEDTIME < 300) {
+            alert("Congrats!"); // change this as well
+            window.onload();
+        }
+
+        recreateObj();
+    }, REDUCEDTIME);
+}
+
+function getPoints() {
+    points++;
+    console.log("points : " + points);
+    for (i = 0; i < parseInt(textInput.value); i++) {
+        arrayButtons[i].btn.style.display = "none";
+    }
 }
