@@ -11,15 +11,25 @@
 <body>
     <div id="divFrame">
         <div id="firstPage">
-            <p>Card Game</p>
-            <p>Leader Board</p>
-            <input id="numOfBtn" placeholder="Put level here">
-            <button id="goBtn">START</button>
+            <div id="tophalf">
+                <p>Card Game</p>
+                <p>Leader Board</p>
+            </div>
+            <div id="bottomhalf">
+                <p><input id="numOfBtn" placeholder="Put level here"></p>
+                <p><button id="goBtn">START</button></p>
+            </div>
+        </div>
+
+        <div id="secondPage">
+            <div id="score">
+                <p id="displayScore"></p>
+            </div>
         </div>
     </div>
     <audio id="clickRightCard">
         <source src="audio/audio.mp3" type="audio/mpeg">
-            audio not supported
+        audio not supported
     </audio>
     <script src="js/index.js"></script>
 </body>

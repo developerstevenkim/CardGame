@@ -3,4 +3,33 @@
     display: block;
     margin: auto;
     text-align: center;
+    width: 350px;
+    height: 500px;
+    border: 3px solid black;
+}
+
+#tophalf
+{
+    top: 0%;
+}
+
+#bottomhalf
+{
+    margin-top: 100%;
+}
+
+#secondPage
+{
+    position: absolute;
+    top: 470px;
+}
+
+input{
+    text-align: center;
+}
+
+#displayScore
+{
+    text-align: center;
+    z-index: -2;
 }

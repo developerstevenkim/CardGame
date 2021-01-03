@@ -6,9 +6,12 @@ let goBtn = document.getElementById("goBtn");
 let divFrame = document.getElementById("divFrame");
 let firstPage = document.getElementById("firstPage");
 let clickRightCard = document.getElementById("clickRightCard");
+let displayScore = document.getElementById("displayScore");
 let i;
 let points = 0;
 let arrayButtons = [];
+
+clickRightCard.volume = 0.3;
 
 goBtn.onclick = createObj;
 
@@ -27,6 +30,7 @@ function createObj() {
         arrayButtons.push(new Button("Red", "60px", "60px", i));
         randomColor = Math.floor(Math.random() * 16777215).toString(16);
         arrayButtons[i].btn.style.backgroundColor = "#" + randomColor;
+        arrayButtons[i].btn.style.zIndex = 2;
         if (i != 0) {
             arrayButtons[i].btn.style.display = "none";
         } 
@@ -39,9 +43,6 @@ function createObj() {
     recreateObj();
 
     firstPage.style.display = "none";
-    para = document.createElement("p");
-    para.innerHTML = "You've created " + i + " button(s).";
-    divFrame.appendChild(para);
 }
 
 function recreateObj() {
@@ -55,10 +56,9 @@ function recreateObj() {
             getPoints();
         }
         
-        // clickRightCard.play(); audio sound
-        REDUCEDTIME = REDUCEDTIME - 20; // change later to set maybe 30?
+        REDUCEDTIME = REDUCEDTIME - 20;
         if (REDUCEDTIME < 300) {
-            alert("Congrats!"); // change this as well
+            alert("Congrats!"); // change this later
             window.onload();
         }
 
@@ -68,7 +68,9 @@ function recreateObj() {
 
 function getPoints() {
     points++;
-    console.log("points : " + points);
+    displayScore.innerHTML = "Score : " + points;
+    displayScore.style.zIndex = 1;
+    clickRightCard.play();
     for (i = 0; i < parseInt(textInput.value); i++) {
         arrayButtons[i].btn.style.display = "none";
     }
