@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>공튀기기</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            border: 1px solid black;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td colspan="2" border="0px" align="center" style="background-;">
+                <b style='font-size:36px; color:rgb(180,50,19); font-family:"나눔바른펜";'>Valley Cannon</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <canvas id="Cannon" width="600" height="400"></canvas>
+            </td>
+        </tr>
+    </table>
+    <script>
+        var canvas2 = document.getElementById("Cannon");
+        var ctx2 = canvas2.getContext("2d");
+        var tid;
+        var velx = 3;
+        var vely = 10
+        var gravity = 0.3; //arbitrary. Makes for a nice arc. 
+        // 공 관련 변수 
+        var ballRadius = 8;
+        var x = canvas2.width / 2;
+        var y = canvas2.height - 200;
+        var dx = velx;
+        var dy = 0;
+        // 패드 관련 변수 
+        var paddleHeight = 10;
+        var paddleWidth = 75;
+        var paddleX = (canvas2.width - paddleWidth) / 2 + 10;
+        var pp = 300; // 패들 세로 위치(클수록 아래) 
+        function drawBall() {
+            ctx2.beginPath();
+            ctx2.arc(x, y, ballRadius, 0, Math.PI * 2);
+            ctx2.fillStyle = "rgb(200,0,50)";
+            ctx2.fill();
+            ctx2.closePath();
+        }
+
+        function moveball(dx, dy) {
+            x += dx;
+            y += dy;
+        }
+
+        function drawPaddle() {
+            ctx2.beginPath();
+            ctx2.rect(paddleX, pp, paddleWidth, paddleHeight);
+            ctx2.fillStyle = "rgb(200,0,50)";
+            ctx2.fill();
+            ctx2.closePath();
+        }
+
+        function draw() { // 화면에 계속 그림 
+            ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+            drawBall();
+            drawPaddle();
+            if (rightPressed && paddleX < canvas2.width - paddleWidth) {
+                paddleX += 5;
+            } else if (leftPressed && paddleX > 0) {
+                paddleX -= 5;
+            }
+        }
+
+        function change() {
+            dy = dy + gravity;
+            x += dx;
+            y += dy;
+            //check for getting beyond ground level 
+            if (x + dx > canvas2.width - ballRadius || x + dx < ballRadius) { // 가로 벽 
+                dx = -dx;
+            }
+            if (y + dy < ballRadius) { // 위 벽에 부딪혔을 때 
+                dy = -dy;
+            }
+            if (y + dy > canvas2.height) { // 공이 땅에 떨어졌을 때 
+                //dy = -vely; 
+                //y = canvas2.height - 8; 
+                alert("GAME OVER");
+                var re = confirm("다시 플레이하시겠습니까?");
+                if (re) {
+                    document.location.reload();
+                } else {
+                    clearInterval(tid); //타이머 종료 
+                }
+            } else if (y + dy > pp && y + dy < pp + paddleHeight) //check for hitting target 
+            {
+                if (x > paddleX && x < paddleX + paddleWidth) { // 패들로 쳤을 때 
+                    if (dy > 0) //위쪽에서 충동했을때 
+                        dy = -vely;
+                    else //아래쪽에서 충돌했을때 
+                        dy = vely;
+                }
+            }
+            draw();
+            //setInterval(change, 10); 
+        }
+    </script>
+    <script>
+        var rightPressed = false;
+        var leftPressed = false;
+        tid = setInterval(change, 10); //한번만 실행  
+        //change();  
+
+        // 키보드 코드  
+        document.addEventListener("keydown", keyDownHandler, false);
+        document.addEventListener("keyup", keyUpHandler, false);
+
+        function keyDownHandler(e) { // 키를 누를 때  
+            if (e.keyCode == 39) { // 오른쪽 방향키를 눌렀을 때  
+                rightPressed = true;
+            } else if (e.keyCode == 37) { // 왼쪽 방향키를 눌렀을 때  
+                leftPressed = true;
+            }
+        }
+
+        function keyUpHandler(e) { // 키를 뗄 때  
+            if (e.keyCode == 39) { // 오  
+                rightPressed = false;
+            } else if (e.keyCode == 37) { // 왼  
+                leftPressed = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

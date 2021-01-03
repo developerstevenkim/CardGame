@@ -1,13 +1,13 @@
+let REDUCEDTIME = 2000;
+
 let randomColor;
-let textInput = document.createElement("input");
-let goBtn = document.createElement("button");
+let textInput = document.getElementById("numOfBtn");
+let goBtn = document.getElementById("goBtn");
+let divFrame = document.getElementById("divFrame");
+let firstPage = document.getElementById("firstPage");
+let clickRightCard = document.getElementById("clickRightCard");
 let i;
 let arrayButtons = [];
-
-textInput.innerHTML = "Type here";
-goBtn.innerHTML = "Go!";
-document.body.appendChild(textInput);
-document.body.appendChild(goBtn);
 
 goBtn.onclick = createObj;
 
@@ -30,16 +30,26 @@ function createObj() {
         arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 120)) + "px";
         arrayButtons[i].btn.style.zIndex = "-1";
     }
-    setInterval(function () {
-        for (i = 0; i < parseInt(textInput.value); i++) {
-            arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
-            arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 120)) + "px";
-        }
-    }, 2000);
 
-    textInput.style.display = "none";
-    goBtn.style.display = "none";
+    function recreateObj() {
+        setTimeout(function () {
+            for (i = 0; i < parseInt(textInput.value); i++) {
+                arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
+                arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 120)) + "px";
+            }
+            REDUCEDTIME = REDUCEDTIME - 200; // change later to set maybe 30?
+            if (REDUCEDTIME < 100) {
+                alert("Congrats!"); // change this as well
+                window.onload();
+            }
+            recreateObj();
+        }, REDUCEDTIME);
+    }
+
+    recreateObj();
+
+    firstPage.style.display = "none";
     para = document.createElement("p");
-    para.innerHTML = "Part B<br><br>You've created " + i + " button(s).";
-    document.body.appendChild(para);
+    para.innerHTML = "You've created " + i + " button(s).";
+    divFrame.appendChild(para);
 }
