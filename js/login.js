@@ -49,8 +49,7 @@ var uiConfig = {
     signInFlow: 'popup',
     signInSuccessUrl: 'game.html',
     signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     ],
 
     // Terms of service url.
