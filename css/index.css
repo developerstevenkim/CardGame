@@ -1,5 +1,9 @@
-#divFrame
-{
+body {
+    background-color: black;
+}
+
+#divFrame {
+    background-color: white;
     display: block;
     margin: auto;
     text-align: center;
@@ -9,27 +13,20 @@
     z-index: 2;
 }
 
-#tophalf
-{
+#tophalf {
     top: 0%;
 }
 
-#bottomhalf
-{
+#bottomhalf {
     position: relative;
     top: 300px;
 }
 
-input{
+input {
     text-align: center;
 }
 
-#displayScore
-{
+#displayScore {
+    background-color: white;
     text-align: center;
-}
-
-#displayScore
-{
-    z-index: 3;
 }
