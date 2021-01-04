@@ -3,14 +3,16 @@ body {
 }
 
 #divFrame {
-    background-color: white;
     display: block;
     margin: auto;
     text-align: center;
     width: 350px;
     height: 500px;
     border: 3px solid black;
-    z-index: 2;
+    background-image: url('/images/cubes.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom center;
 }
 
 #tophalf {
