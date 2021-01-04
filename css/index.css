@@ -16,15 +16,6 @@ body {
     background-position: bottom center;
 }
 
-#tophalf {
-    top: 0%;
-}
-
-#bottomhalf {
-    position: relative;
-    top: 300px;
-}
-
 input {
     text-align: center;
 }
