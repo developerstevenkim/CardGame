@@ -30,7 +30,6 @@ function createObj() {
         arrayButtons.push(new Button("Red", "60px", "60px", i));
         randomColor = Math.floor(Math.random() * 16777215).toString(16);
         arrayButtons[i].btn.style.backgroundColor = "#" + randomColor;
-        arrayButtons[i].btn.style.zIndex = 2;
         if (i != 0) {
             arrayButtons[i].btn.style.display = "none";
         } 
@@ -69,7 +68,6 @@ function recreateObj() {
 function getPoints() {
     points++;
     displayScore.innerHTML = "Score : " + points;
-    displayScore.style.zIndex = 1;
     clickRightCard.play();
     for (i = 0; i < parseInt(textInput.value); i++) {
         arrayButtons[i].btn.style.display = "none";
