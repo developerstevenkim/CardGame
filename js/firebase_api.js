@@ -11,7 +11,9 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+
+
+const db = firebase.firestore();
 
 // This javascript file should be referenced by all the html files except for launch and login
 firebase.auth().onAuthStateChanged(function (user) {
