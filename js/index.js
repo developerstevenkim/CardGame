@@ -1,4 +1,9 @@
 let REDUCEDTIME = 2000;
+let MAXWDITH = ((window.innerWidth - 60) / 2) + 145;
+let MINWDITH = ((window.innerWidth - 60) / 2) - 145;
+let MAXHEIGHT = ((window.innerHeight - 60) / 2) + 220;
+let MINHEIGHT = ((window.innerHeight - 60) / 2) - 220;
+
 
 let randomColor;
 let textInput = document.getElementById("numOfBtn");
@@ -47,8 +52,8 @@ function createObj() {
 function recreateObj() {
     setTimeout(function () {
         for (i = 0; i < parseInt(textInput.value); i++) {
-            arrayButtons[i].btn.style.top = Math.floor(Math.random() * (window.innerHeight - 60)) + "px";
-            arrayButtons[i].btn.style.left = Math.floor(Math.random() * (window.innerWidth - 60)) + "px";
+            arrayButtons[i].btn.style.top = Math.floor(Math.random() * (MAXHEIGHT - MINHEIGHT) + MINHEIGHT) - 80 + "px";
+            arrayButtons[i].btn.style.left = Math.floor(Math.random() * (MAXWDITH - MINWDITH) + MINWDITH) + "px";
             arrayButtons[i].btn.style.display = "block";
         }
         arrayButtons[0].btn.onclick = function() {
