@@ -3,6 +3,7 @@ body {
 }
 
 #divFrame {
+    background-color: white;
     display: block;
     margin: auto;
     text-align: center;
