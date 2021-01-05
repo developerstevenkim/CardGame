@@ -6,53 +6,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Game</title>
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <!-- testing...
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
-    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
-    -->
 </head>
 
 <body>
-
     <div id="divFrame">
         <nav id="navbar">
             <div class="navbar__logo navbar__left">
                 <a href="index.html"> <img src="images/logo.png" id="logoImg"> </a>
             </div>
 
-            <p class="navbar__center"></p>
+            <div class="navbar__center">
+                <p id="displayScore"></p>
+            </div>
 
             <ul class="navbar__link navbar__right">
                 <a href="index.html">
                     <li><img src="images/crown.png" alt="leaderBoard" id="crownImg"></li>
                 </a>
                 <a href="index.html">
-                    <li><img src="images/logout.png" alt="logout" id="logoutImg" onclick="firebase.auth().signOut();"></li>
+                    <li><img src="images/logout.png" alt="logout" id="logoutImg" onclick="firebase.auth().signOut();">
+                    </li>
                 </a>
             </ul>
         </nav>
+
         <!-- home screen -->
         <div id="firstPage">
             <h1 id="title">Card Game</h1>
             <p><input id="numOfBtn" placeholder="Put level here"></p>
             <p><button id="goBtn">START</button></p>
         </div>
+
+        <!-- playing -->
+        <div id="secondPage" style="display: none;">
+            <h1 id="title">End game</h1>
+            <p><button id="playAgainBtn">Play Again</button></p>
+            <p><button id="leaderBoardBtn">Leader Board</button></p>
+            <p><button id="commentSectionBtn">Comment Section</button></p>
+            <p><button id="snsShareBtn">SNS Share</button></p>
+        </div>
+        <!-- leader board -->
+        <div id="leaderBoard" style="display: none;">
+            <h1>Leaderboard here</h1>
+        </div>
+
+        <div id="comments" style="display: none;">
+            <h1>Comments</h1>
+            <div id="disqus_thread"></div>
+            <script>
+                /**
+                 *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                 *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                /*
+                var disqus_config = function () {
+                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                };
+                */
+                (function () { // DON'T EDIT BELOW THIS LINE
+                    var d = document,
+                        s = d.createElement('script');
+                    s.src = 'https://cardgame-1.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered
+                    by Disqus.</a></noscript>
+        </div>
+
+        <div id="sns" style="display: none;">
+            <h1>Sns</h1>
+        </div>
     </div>
 
-    <!-- playing -->
-    <div id="secondPage">
-    </div>
 
-    <div id="leaderBoard">
-
-    </div>
 
     <audio id="clickRightCard">
         <source src="audio/audio.mp3" type="audio/mpeg">
         audio not supported
     </audio>
 
-    <script src="js/index_test.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="js/index.js"></script>
 </body>
 
 </html>

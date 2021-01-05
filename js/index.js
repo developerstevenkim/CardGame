@@ -1,24 +1,56 @@
-let REDUCEDTIME = 2000;
-let MAXWDITH = ((window.innerWidth - 60) / 2) + 145;
+
+let MAXWDITH = ((window.innerWidth - 60) / 2) + 175;
 let MINWDITH = ((window.innerWidth - 60) / 2) - 145;
-let MAXHEIGHT = ((window.innerHeight - 60) / 2) + 220;
-let MINHEIGHT = ((window.innerHeight - 60) / 2) - 220;
+let MAXHEIGHT = ((window.innerHeight - 60) / 2) + 260;
+let MINHEIGHT = ((window.innerHeight - 60) / 2) - 180;
 
 
 let randomColor;
+
 let textInput = document.getElementById("numOfBtn");
 let goBtn = document.getElementById("goBtn");
+
 let divFrame = document.getElementById("divFrame");
 let firstPage = document.getElementById("firstPage");
+let secondPage = document.getElementById("secondPage");
+let leaderBoard = document.getElementById("leaderBoard");
+let comments = document.getElementById("comments");
+let sns = document.getElementById("sns");
+let playAgainBtn = document.getElementById("playAgainBtn");
+let leaderBoardBtn = document.getElementById("leaderBoardBtn");
+let commentSectionBtn = document.getElementById("commentSectionBtn");
+let snsShareBtn = document.getElementById("snsShareBtn");
+
 let clickRightCard = document.getElementById("clickRightCard");
 let displayScore = document.getElementById("displayScore");
+
 let i;
+let reducedtime = 2000;
 let points = 0;
 let arrayButtons = [];
 
 clickRightCard.volume = 0.3;
 
 goBtn.onclick = createObj;
+
+playAgainBtn.onclick = function() {
+    location.href='game_test.html';
+}
+
+leaderBoardBtn.onclick = function() {
+    secondPage.style.display = "none";
+    leaderBoard.style.display = "block";
+}
+
+commentSectionBtn.onclick = function() {
+    secondPage.style.display = "none";
+    comments.style.display = "block";
+}
+
+snsShareBtn.onclick = function() {
+    secondPage.style.display = "none";
+    sns.style.display = "block";
+}
 
 function Button(color, width, height, order) {
     this.order = order;
@@ -60,15 +92,15 @@ function recreateObj() {
             getPoints();
         }
         
-        REDUCEDTIME = REDUCEDTIME - 200;
-        if (REDUCEDTIME < 500) {
+        reducedtime = reducedtime - 200;
+        if (reducedtime < 500) {
             //game end msg.
             gameEnd();
             return;
         }
 
         recreateObj();
-    }, REDUCEDTIME);
+    }, reducedtime);
 }
 
 function removeBtn() {
@@ -89,12 +121,7 @@ function getPoints() {
 }
 
 function gameEnd() {
-    var r = confirm("Would you like to record your score?");
-    if (r == true) {
-      // display firebase leaderboard ?
-    } else {
-      // game end
-      removeBtn();
-      firstPage.style.display = "block";
-    }
+    reducedtime = 2000;
+    removeBtn();
+    secondPage.style.display = "block";
 }
