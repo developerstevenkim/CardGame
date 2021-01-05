@@ -6,25 +6,49 @@ body {
     background-color: white;
     display: block;
     margin: auto;
-    padding-top: 100px;
-    padding-bottom: 50px;
     text-align: center;
     width: 350px;
-    height: 500px;
+    height: 520px;
+    background-image: url('../images/cubes.png');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: bottom center;
 }
 
-input {
-    text-align: center;
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid black;
+    width: 350px;
 }
 
-#displayScore, #logOut {
-    background-color: white;
-    display: block;
-    margin: auto;
-    margin-top: 30px;
+.navbar__link {
+    list-style: none;
+    display: flex;
+}
+
+.navbar__link li {
+    padding: 4px 8px;
+}
+
+.navbar__left, .navbar__center, .navbar__right {
+    padding: 8px 12px;
+}
+
+ul {
+    margin: 0px;
+}
+
+#logoImg, #crownImg, #logoutImg {
+    border-radius: 50%;
+    width: 30px;
+}
+
+#title {
+    padding: 80px 0 80px 0;
+}
+
+input {
     text-align: center;
-    width: 350px;
 }
