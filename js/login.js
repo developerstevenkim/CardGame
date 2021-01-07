@@ -22,9 +22,7 @@ var uiConfig = {
                 db.collection("users").doc(user.uid).set({
                         name: user.displayName,
                         email: user.email,
-                        level: 1,
-                        points: 0,
-                        post: 0,
+                        maxpoints: 0
                     }).then(function () {
                         console.log("New user added to firestore");
                         window.location.assign("game.html");
